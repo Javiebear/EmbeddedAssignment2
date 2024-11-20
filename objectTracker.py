@@ -14,7 +14,7 @@ fourcc = cv2.VideoWriter_fourcc(*"XVID")
 out = cv2.VideoWriter("the_new_video_is.avi", fourcc , 25, (852, 480))
 
 # repalce the test.mp4 with an video of your own 
-camera = cv2.VideoCapture("test.mp4")
+camera = cv2.VideoCapture("movingCars.avi")
 
 while True:
     _,img = camera.read()
