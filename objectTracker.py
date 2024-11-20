@@ -9,7 +9,7 @@ with open("coco.names", "r") as f:
     classes = [line.strip() for line in f.readlines()]
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
-colors = np.random.uniform(0, 255, size=(len(classes), 3))
+colors = np.random.uniform(0, 1, size=(len(classes), 3))  # Normalize colors to [0, 1]
 
 # Loading video
 camera = cv2.VideoCapture("movingCars.avi")
@@ -58,7 +58,7 @@ while True:
         if i in indexes:
             x, y, w, h = boxes[i]
             label = str(classes[class_ids[i]])
-            color = colors[i]
+            color = colors[i]  # Use normalized color
             ax.add_patch(plt.Rectangle((x, y), w, h, fill=False, color=color, linewidth=2))
             ax.text(x, y - 5, label, color=color, fontsize=12, backgroundcolor='none')
     plt.draw()
