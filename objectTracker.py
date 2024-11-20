@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import time  # Import the time module for measuring execution time
 
 # Load YOLO
 net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
@@ -24,6 +25,9 @@ out = cv2.VideoWriter("the_new_video_is.avi", fourcc , 25, (852, 480))
 
 # Replace the test.mp4 with your video file
 camera = cv2.VideoCapture("movingCars.mp4")
+
+# Start the timer to measure execution time
+start_time = time.time()
 
 while True:
     _, img = camera.read()
@@ -81,3 +85,8 @@ while True:
 # Release the camera and destroy all OpenCV windows
 camera.release()
 cv2.destroyAllWindows()
+
+# Calculate and print the total execution time
+end_time = time.time()
+execution_time = end_time - start_time
+print(f"Execution Time: {execution_time} seconds")
